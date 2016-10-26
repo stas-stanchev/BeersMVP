@@ -1,6 +1,7 @@
 package stano.home.modernplay;
 
 import android.app.Application;
+import android.content.Context;
 
 import stano.home.modernplay.di.components.DaggerNetworkComponent;
 import stano.home.modernplay.di.components.NetworkComponent;
@@ -20,5 +21,9 @@ public class ModernPlaysApp extends Application {
 
     public NetworkComponent getNetworkComponent() {
         return networkComponent;
+    }
+
+    public static NetworkComponent getNetworkComponent(Context context) {
+        return ((ModernPlaysApp) context.getApplicationContext()).getNetworkComponent();
     }
 }

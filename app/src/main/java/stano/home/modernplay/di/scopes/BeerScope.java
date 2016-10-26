@@ -1,4 +1,4 @@
-package stano.home.modernplay.ui.beerlist;
+package stano.home.modernplay.di.scopes;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

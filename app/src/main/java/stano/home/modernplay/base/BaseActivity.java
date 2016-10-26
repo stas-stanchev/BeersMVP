@@ -22,7 +22,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         inflateInner();
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        doInject();
     }
+
+    protected void doInject() {}
 
     private void inflateInner() {
         ViewGroup viewGroup = ButterKnife.<ViewGroup>findById(this, R.id.container);

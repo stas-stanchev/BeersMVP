@@ -1,13 +1,11 @@
 package stano.home.modernplay.data.api;
 
 
-import rx.Observable;
-
 public class Response<T> {
     private String status;
     private int numberOfPages;
     private int currentPage;
-    private Observable<T> data;
+    private T data;
 
     public String getStatus() {
         return status;
@@ -21,7 +19,11 @@ public class Response<T> {
         return currentPage;
     }
 
-    public Observable<T> getData() {
+    public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }
