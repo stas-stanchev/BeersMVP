@@ -1,4 +1,4 @@
-package stano.home.modernplay.ui.beerlist;
+package stano.home.modernplay.data;
 
 
 import java.util.List;
@@ -9,7 +9,6 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import stano.home.modernplay.data.api.BeerApi;
-import stano.home.modernplay.data.api.Response;
 import stano.home.modernplay.data.models.Beer;
 import stano.home.modernplay.di.scopes.BeerScope;
 
@@ -18,13 +17,14 @@ public class BeerProvider {
     private BeerApi beerApi;
 
     @Inject
-    BeerProvider(BeerApi beerApi) {
+    public BeerProvider(BeerApi beerApi) {
         this.beerApi = beerApi;
     }
 
-    public Observable<Response<List<Beer>>> loadAllBeers() {
+    public Observable<List<Beer>> loadAllBeers() {
         return beerApi.getBeers()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(response -> Observable.from(response.getData()).toList());
     }
 }

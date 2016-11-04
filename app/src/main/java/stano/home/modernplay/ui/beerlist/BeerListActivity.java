@@ -22,14 +22,13 @@ public class BeerListActivity extends BaseActivity implements BeerListView {
     @BindView(R.id.txt_label) TextView txtLabel;
 
     @Inject BeerListPresenter presenter;
-    private BeerListComponent beerListComponent;
 
     @Override
     protected void doInject() {
-        beerListComponent = DaggerBeerListComponent.builder()
+        DaggerBeerListComponent.builder()
                 .networkComponent(ModernPlaysApp.getNetworkComponent(this))
-                .build();
-        beerListComponent.inject(this);
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -42,12 +41,6 @@ public class BeerListActivity extends BaseActivity implements BeerListView {
     protected void onPause() {
         super.onPause();
         presenter.setView(null);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        beerListComponent = null;
     }
 
     @Override
@@ -76,7 +69,6 @@ public class BeerListActivity extends BaseActivity implements BeerListView {
     }
 
     @OnClick(R.id.btn_load_beers)
-    @Override
     public void loadBeers() {
         presenter.loadBeers();
     }

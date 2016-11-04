@@ -4,6 +4,7 @@ package stano.home.modernplay.ui.beerlist;
 import javax.inject.Inject;
 
 import stano.home.modernplay.base.Presenter;
+import stano.home.modernplay.data.BeerProvider;
 import stano.home.modernplay.di.scopes.BeerScope;
 
 @BeerScope
@@ -24,7 +25,7 @@ public class BeerListPresenter implements Presenter<BeerListView> {
 
     public void loadBeers() {
         view.showLoading();
-        beerProvider.loadAllBeers().subscribe(beersResponse -> view.onBeersLoaded(beersResponse.getData()),
+        beerProvider.loadAllBeers().subscribe(beers -> view.onBeersLoaded(beers),
                                               error -> view.onLoadingError(error.getMessage()),
                                               () -> view.hideLoading());
     }

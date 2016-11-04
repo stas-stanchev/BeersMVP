@@ -2,6 +2,7 @@ package stano.home.modernplay.ui.beerlist;
 
 import dagger.Module;
 import dagger.Provides;
+import stano.home.modernplay.data.BeerProvider;
 import stano.home.modernplay.data.api.BeerApi;
 
 @Module
